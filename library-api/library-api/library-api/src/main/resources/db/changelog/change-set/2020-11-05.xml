@@ -1,0 +1,63 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="julioluis" id="jl-2020-11-05-01">
+        <sql>
+
+            ALTER TABLE book
+            MODIFY COLUMN id INT;
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2020-11-05-02">
+        <sql>
+
+            INSERT INTO book(id,title,create_at,updated_at,author)
+            VALUES(1,"Don Quixote",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,"Miguel de Cervantes"),
+            (2,"A Tale of Two Cities",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,"Charles Dickens"),
+            (3,"The Lord of the Rings",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,"J.R.R. Tolkien"),
+            (4,"The Little Prince",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,"Antoine de Saint-Exupery"),
+            (5,"And Then There Were None",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,"Agatha Christie");
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2020-11-05-03">
+        <sql>
+
+            INSERT INTO book_page(book_id,page_number,content)
+            VALUES(1,1,'Alonso Quixano, the protagonist of the novel (though he is not given this name until much later in the book), is a hidalgo (member of the lesser Spanish nobility), nearing 50 years of age'),
+            (1,2,'Alonso Quixano, the protagonist of the novel (though he is not given this name until much later in the book), is a hidalgo (member of the lesser Spanish nobility), nearing 50 years of age'),
+            (1,3,'Alonso Quixano, the protagonist of the novel (though he is not given this name until much later in the book), is a hidalgo (member of the lesser Spanish nobility), nearing 50 years of age'),
+            (1,4,'Alonso Quixano, the protagonist of the novel (though he is not given this name until much later in the book), is a hidalgo (member of the lesser Spanish nobility), nearing 50 years of age'),
+            (1,5,'Alonso Quixano, the protagonist of the novel (though he is not given this name until much later in the book), is a hidalgo (member of the lesser Spanish nobility), nearing 50 years of age'),
+            (2,1,'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness'),
+            (2,2,'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness'),
+            (2,3,'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness'),
+            (3,1,'This article is about the book. For the film series, see The Lord of the Rings'),
+            (3,2,'This article is about the book. For the film series, see The Lord of the Rings'),
+            (3,3,'This article is about the book. For the film series, see The Lord of the Rings'),
+            (4,1,'The narrator begins with a discussion on the nature of grown-ups and their inability to perceive especially important things'),
+            (4,2,'The narrator begins with a discussion on the nature of grown-ups and their inability to perceive especially important things'),
+            (4,3,'The narrator begins with a discussion on the nature of grown-ups and their inability to perceive especially important things'),
+            (5,1,'On 8 August in the late 1930s, eight people arrive on a small, isolated island'),
+            (5,2,'On 8 August in the late 1930s, eight people arrive on a small, isolated island'),
+            (5,3,'On 8 August in the late 1930s, eight people arrive on a small, isolated island');
+
+        </sql>
+
+    </changeSet>
+
+
+
+
+</databaseChangeLog>

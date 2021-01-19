@@ -1,0 +1,40 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="julioluis" id="jl-2020-11-04-01">
+        <sql>
+
+            CREATE TABLE book (
+            id BIGINT(11) NOT NULL AUTO_INCREMENT,
+            title VARCHAR(100) NOT NULL,
+            create_at TIMESTAMP NOT NULL,
+            updated_at TIMESTAMP NOT NULL,
+            author VARCHAR(100) NOT NULL,
+            PRIMARY KEY (id),
+            UNIQUE INDEX title_UNIQUE (title ASC));
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2020-11-04-02">
+        <sql>
+
+            CREATE TABLE book_page (
+            book_id INT NOT NULL,
+            page_number INT NOT NULL,
+            content TEXT NOT NULL,
+            PRIMARY KEY (book_id, page_number));
+
+        </sql>
+
+    </changeSet>
+
+
+</databaseChangeLog>
