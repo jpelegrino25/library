@@ -2,6 +2,8 @@ package com.julioluis.libraryapi.controllers;
 
 import com.julioluis.libraryapi.entities.Book;
 import com.julioluis.libraryapi.entities.BookPagePK;
+import com.julioluis.libraryapi.helper.formatter.BookFormatterFactory;
+import com.julioluis.libraryapi.models.ContentFormat;
 import com.julioluis.libraryapi.models.GenericResponse;
 import com.julioluis.libraryapi.services.BookPageService;
 import com.julioluis.libraryapi.services.BookService;
@@ -57,7 +59,7 @@ public class BookController {
     }
 
     @GetMapping(path = "{bookId}/page/{pageNumber}/{format}")
-    public ResponseEntity<String> getPageContent(
+    public ResponseEntity<Object> getPageContent(
             @PathVariable(name = "bookId") Long bookId,
             @PathVariable(name = "pageNumber") Long pageNumber,
             @PathVariable(name = "format") String format) throws UserException {
@@ -65,13 +67,11 @@ public class BookController {
         GenericResponse<String> response=bookPageService.getPageContent(bookId,pageNumber);
 
         if(response.isSuccess()) {
-            MediaTypeEnum mediaTypeEnum=MediaTypeEnum.getMediaType(format);
+            ContentFormat contentFormat= BookFormatterFactory.getContentFormat(format,response.getResult());
+            return ResponseEntity.ok()
+                    .contentType(contentFormat.getMediaType())
+                    .body(contentFormat.getContent());
 
-            if(Objects.nonNull(mediaTypeEnum)) {
-                return ResponseEntity.ok()
-                        .contentType(mediaTypeEnum.getMediaType())
-                        .body(response.getResult());
-            }
         }
 
         throw new UserException(Constants.INCORRECT_FORMAT);
